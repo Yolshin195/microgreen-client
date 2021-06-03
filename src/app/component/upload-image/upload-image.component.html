@@ -1,0 +1,7 @@
+<div (click)="fileInput.click()">
+    <img src={{path}} class="img-thumbnail" alt="..." style="width: 100%;">
+        <input
+            style="display: none"
+            #fileInput
+            type="file" (change)="onFileSelected($event)" >
+</div>

@@ -1,0 +1,28 @@
+<form class="row mb-3"  [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="col col-lg-3">
+        <app-upload-image formControlName="image"></app-upload-image>
+    </div>
+    <div class="col">
+        <div class="mb-3">
+            <label for="title" class="form-label">Заголовок</label>
+            <input type="email" class="form-control" id="title" placeholder="Enter title" formControlName="title">
+          </div>
+          <div class="mb-3">
+            <label for="description" class="form-label">Описание</label>
+            <textarea class="form-control" id="description" rows="3" formControlName="description"></textarea>
+          </div>
+          <button type="submit" class="btn btn-success mb-3" [disabled]="!form.valid">Добавить</button>
+    </div>
+</form>
+
+<div class="row mb-3" *ngFor="let nomenclature of nomenclatureList">
+    <div class="col col-lg-3">
+        <img [src]="nomenclature.image.fileName |pathImg" class="img-thumbnail" alt="...">
+    </div>
+    <div class="col">
+        <h1>{{nomenclature.title}}</h1>
+        <p>{{nomenclature.description}} </p>
+        <button class="btn btn-primary">Редактировать</button>
+        <button class="btn btn-danger">Удалить</button>
+    </div>
+</div>
