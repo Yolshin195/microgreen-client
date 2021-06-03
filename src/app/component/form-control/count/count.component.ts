@@ -1,6 +1,5 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ContentComponent } from '../content/content.component';
 
 @Component({
   selector: 'app-count',
@@ -8,7 +7,7 @@ import { ContentComponent } from '../content/content.component';
   styleUrls: ['./count.component.css'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => ContentComponent),
+    useExisting: forwardRef(() => CountComponent),
     multi: true
   }]
 })
@@ -46,7 +45,10 @@ export class CountComponent implements OnInit, ControlValueAccessor {
   }
 
   writeValue(count: number): void {
-    this.count = count;
+    count = Number(count);
+    if (!Number.isNaN(count)) {
+      this.count = count;
+    }
   }
 
   registerOnChange(fn: any): void {

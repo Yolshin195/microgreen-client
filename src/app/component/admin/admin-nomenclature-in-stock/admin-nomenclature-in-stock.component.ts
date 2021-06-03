@@ -1,5 +1,5 @@
 import { Component, createPlatform, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NomenclatureInStockService } from 'src/app/service/nomenclature-in-stock.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class AdminNomenclatureInStockComponent implements OnInit {
 
   createForm(): FormGroup {
     return this.formBuilder.group({
-      count: ['', Validators.required],
+      count: [1, Validators.required],
       price: ['', Validators.required],
       nomenclature: ['', Validators.required]
     });

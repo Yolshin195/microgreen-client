@@ -22,6 +22,10 @@ export class NomenclatureService {
     return this.http.get<Nomenclature[]>(this.path);
   }
 
+  findAllByTitleContaining(title: String): Observable<Nomenclature[]> {
+    return this.http.get<Nomenclature[]>(`${this.path}/find/?title=${title}`);
+  }
+
   save(nomenclature: Nomenclature): Observable<any> {
     return this.http.post(this.path, nomenclature);
   }

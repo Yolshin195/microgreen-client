@@ -11,10 +11,12 @@ import { OrderCultivationComponent } from './component/order-cultivation/order-c
 import { MainComponent } from './component/main/main.component';
 import { BasketComponent } from './component/basket/basket.component';
 import { AdminNomenclatureComponent } from './component/admin/admin-nomenclature/admin-nomenclature.component';
-import { UploadImageComponent } from './component/upload-image/upload-image.component';
+import { UploadImageComponent } from './component/form-control/upload-image/upload-image.component';
 import { PathImgPipe } from './pipe/path-img.pipe';
 import { AdminNomenclatureInStockComponent } from './component/admin/admin-nomenclature-in-stock/admin-nomenclature-in-stock.component';
-import { CountComponent } from './component/count/count.component';
+import { CountComponent } from './component/form-control/count/count.component';
+import { SelectNomenclatureComponent } from './component/form-control/select-nomenclature/select-nomenclature.component';
+import { SelectPriceComponent } from './component/form-control/select-price/select-price.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { CountComponent } from './component/count/count.component';
     UploadImageComponent,
     PathImgPipe,
     AdminNomenclatureInStockComponent,
-    CountComponent
+    CountComponent,
+    SelectNomenclatureComponent,
+    SelectPriceComponent
   ],
   imports: [
     BrowserModule,

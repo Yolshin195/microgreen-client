@@ -1,7 +1,11 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3">
+        <label for="" class="form-label">Nomenclature</label>  
+        <app-select-nomenclature formControlName="nomenclature"></app-select-nomenclature>
+    </div>
+    <div class="mb-3">
         <label for="" class="form-label">Count</label>  
-        <app-count></app-count>
+        <app-count formControlName="count"></app-count>
     </div>
     <button type="submit" class="btn btn-success mb-3" [disabled]="!form.valid">Добавить</button>
 </form>
