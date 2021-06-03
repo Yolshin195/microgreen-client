@@ -14,6 +14,7 @@ import { AdminNomenclatureComponent } from './component/admin/admin-nomenclature
 import { UploadImageComponent } from './component/upload-image/upload-image.component';
 import { PathImgPipe } from './pipe/path-img.pipe';
 import { AdminNomenclatureInStockComponent } from './component/admin/admin-nomenclature-in-stock/admin-nomenclature-in-stock.component';
+import { CountComponent } from './component/count/count.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AdminNomenclatureInStockComponent } from './component/admin/admin-nomen
     AdminNomenclatureComponent,
     UploadImageComponent,
     PathImgPipe,
-    AdminNomenclatureInStockComponent
+    AdminNomenclatureInStockComponent,
+    CountComponent
   ],
   imports: [
     BrowserModule,

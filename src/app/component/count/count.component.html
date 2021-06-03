@@ -1,0 +1,9 @@
+<div class="input-group">
+    <button class="btn btn-outline-secondary" type="button" (click)="onMinus()">-</button>
+    <input type="text" class="form-control" placeholder="" 
+        aria-label="count control" aria-describedby="count control" 
+        (input)="onChange($event)"
+        [value]="count"
+    />
+    <button class="btn btn-outline-secondary" type="button" (click)="onPlus()">+</button>
+</div>

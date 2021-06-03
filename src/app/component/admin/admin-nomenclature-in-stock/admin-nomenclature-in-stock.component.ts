@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, createPlatform, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NomenclatureInStockService } from 'src/app/service/nomenclature-in-stock.service';
 
 @Component({
   selector: 'app-admin-nomenclature-in-stock',
@@ -6,10 +8,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin-nomenclature-in-stock.component.css']
 })
 export class AdminNomenclatureInStockComponent implements OnInit {
+  form: FormGroup = this.createForm();
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder, private service: NomenclatureInStockService) { }
 
   ngOnInit(): void {
+  }
+
+  createForm(): FormGroup {
+    return this.formBuilder.group({
+      count: ['', Validators.required],
+      price: ['', Validators.required],
+      nomenclature: ['', Validators.required]
+    });
+  }
+
+  onSubmit(): void {
+
   }
 
 }
