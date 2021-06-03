@@ -1,6 +1,7 @@
 import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ImageService } from 'src/app/service/image.service';
+import { Image, ImageService } from 'src/app/service/image.service';
+import { Nomenclature } from 'src/app/service/nomenclature.service';
 
 @Component({
   selector: 'app-upload-image',
@@ -22,8 +23,10 @@ export class UploadImageComponent implements OnInit, ControlValueAccessor {
   ngOnInit(): void {
   }
 
-  writeValue(obj: any): void {
-
+  writeValue(image: Image): void {
+    if (image) {
+      this.path = `/api/image/${image.fileName}`;
+    }
   }
 
   registerOnChange(fn: any): void {

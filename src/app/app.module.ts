@@ -13,6 +13,7 @@ import { BasketComponent } from './component/basket/basket.component';
 import { AdminNomenclatureComponent } from './component/admin/admin-nomenclature/admin-nomenclature.component';
 import { UploadImageComponent } from './component/upload-image/upload-image.component';
 import { PathImgPipe } from './pipe/path-img.pipe';
+import { AdminNomenclatureInStockComponent } from './component/admin/admin-nomenclature-in-stock/admin-nomenclature-in-stock.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PathImgPipe } from './pipe/path-img.pipe';
     BasketComponent,
     AdminNomenclatureComponent,
     UploadImageComponent,
-    PathImgPipe
+    PathImgPipe,
+    AdminNomenclatureInStockComponent
   ],
   imports: [
     BrowserModule,
