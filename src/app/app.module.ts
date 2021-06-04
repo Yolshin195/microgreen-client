@@ -17,6 +17,7 @@ import { AdminNomenclatureInStockComponent } from './component/admin/admin-nomen
 import { CountComponent } from './component/form-control/count/count.component';
 import { SelectNomenclatureComponent } from './component/form-control/select-nomenclature/select-nomenclature.component';
 import { SelectPriceComponent } from './component/form-control/select-price/select-price.component';
+import { AdminPriceComponent } from './component/admin/admin-price/admin-price.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SelectPriceComponent } from './component/form-control/select-price/sele
     AdminNomenclatureInStockComponent,
     CountComponent,
     SelectNomenclatureComponent,
-    SelectPriceComponent
+    SelectPriceComponent,
+    AdminPriceComponent
   ],
   imports: [
     BrowserModule,

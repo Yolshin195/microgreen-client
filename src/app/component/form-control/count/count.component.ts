@@ -1,4 +1,4 @@
-import { Component, forwardRef, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -16,18 +16,25 @@ export class CountComponent implements OnInit, ControlValueAccessor {
   propageteTouche: Function = () => {};
   public count: number = 1;
 
+  @Input() min: number = 1;
+  @Input() max: number = 999;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   onPlus() {
+    if (this.count >= this.max) return;
+  
     this.count++;
     this.propagateChange(this.count);
     this.propageteTouche(this.count);
   }
 
   onMinus() {
+    if (this.count <= this.min) return;
+
     this.count--;
     this.propagateChange(this.count);
     this.propageteTouche(this.count);

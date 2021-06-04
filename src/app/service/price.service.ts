@@ -23,6 +23,7 @@ export class PriceService {
   }
 
   save(price: Price): Observable<any> {
+    console.log(price);
     return this.http.post(this.path, price);
   }
 }

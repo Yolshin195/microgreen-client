@@ -1,0 +1,22 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="mb-3">
+    <div class="mb-3">
+        <label for="nomenclature" class="form-label">Nomenclature</label>
+        <app-select-nomenclature formControlName="nomenclature"></app-select-nomenclature>
+    </div>
+    <div class="mb-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" formControlName="price" class="form-control" id="text" placeholder="Enter price">
+    </div>
+    <button type="submit" class="btn btn-primary">Установить цену</button>
+</form>
+
+<div class="row mb-3" *ngFor="let price of priceList">
+    <div class="col col-lg-2">
+        <img [src]="price.nomenclature.image.fileName |pathImg" class="img-thumbnail" alt="...">
+    </div>
+    <div class="col">
+        <h1>{{price.nomenclature.title}}</h1>
+        <p>Дата: {{price.create |date:"yyyy-mm-dd H:mm:ss"}}</p>
+        <p>Цена: {{price.price}}</p>
+    </div>
+  </div>
