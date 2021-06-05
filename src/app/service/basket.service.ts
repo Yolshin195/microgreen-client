@@ -18,7 +18,11 @@ export class BasketService {
     let basketList = localStorage.getItem("basketList");
     if (basketList) {
       this.resurceSource.next(JSON.parse(basketList));
-    } 
+    }
+
+    this.resurce.subscribe(basketList => 
+      localStorage.setItem("basketList", JSON.stringify(basketList))
+    );
   }
 
   findAll(): Observable<Basket[]> {
