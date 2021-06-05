@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable} from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { NomenclatureInStock } from './nomenclature-in-stock.service';
 
@@ -13,7 +13,12 @@ export interface Basket {
 export class BasketService {
   private list: Basket[] = [];
 
-  constructor() { }
+  constructor() {
+    let basketList = localStorage.getItem("basketList");
+    if (basketList) {
+      this.list = JSON.parse(basketList);
+    } 
+  }
 
   findAll(): Observable<Basket[]> {
     return of(this.list);
@@ -30,5 +35,7 @@ export class BasketService {
       nomenclatureInStock,
       count: 1
     })
+
+    localStorage.setItem("basketList", JSON.stringify(this.list));
   }
 }
