@@ -23,8 +23,12 @@ export class BasketComponent implements OnInit {
     })
   }
 
-  findAll() {
+  findAll(): void {
     this.service.findAll().subscribe(basketList => this.basketList = basketList);
+  }
+
+  onDelete(basket: Basket): void {
+    this.service.delete(basket);
   }
 
 }

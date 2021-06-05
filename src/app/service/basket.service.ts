@@ -38,4 +38,13 @@ export class BasketService {
 
     localStorage.setItem("basketList", JSON.stringify(this.list));
   }
+
+  delete(basket: Basket): void {
+    let index = this.list.indexOf(basket);
+    if (index !== -1) {
+      this.list.splice(index, 1);
+      localStorage.setItem("basketList", JSON.stringify(this.list));
+    }
+  }
+
 }
