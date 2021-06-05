@@ -1,14 +1,15 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="mb-3">
-        <label for="" class="form-label">Nomenclature</label>  
-        <app-select-nomenclature formControlName="nomenclature"></app-select-nomenclature>
+        <label for="nomenclature" class="form-label">Nomenclature</label>  
+        <app-select-nomenclature id="nomenclature" formControlName="nomenclature"></app-select-nomenclature>
     </div>
     <div class="mb-3">
-        <app-select-price></app-select-price>
+        <label for="price" class="form-label">Price</label>  
+        <app-select-price id="price" formControlName="price" [nomenclature]="form.value.nomenclature"></app-select-price>
     </div>
     <div class="mb-3">
-        <label for="" class="form-label">Count</label>  
-        <app-count formControlName="count"></app-count>
+        <label for="count" class="form-label">Count</label>  
+        <app-count id="count" formControlName="count"></app-count>
     </div>
     <button type="submit" class="btn btn-success mb-3" [disabled]="!form.valid">Добавить</button>
 </form>

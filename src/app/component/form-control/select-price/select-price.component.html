@@ -3,14 +3,21 @@
         aria-label="Enter title on price for serch" 
         [value]="inputValue"
         (focus)="onClick()"
+        (focusout)="onFocusout()"
         (input)="onSearch($event)"
+        [disabled]="!isNull(nomenclature)"
+        [class.select-price-input-show]="isShowList"
     />
-    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+        [class.select-price-botton-show]="isShowList"
+        [disabled]="!isNull(nomenclature)" 
+        (click)="onToggle()" >
       <span class="visually-hidden">Toggle Dropdown</span>
     </button>
-    <ul class="dropdown-menu dropdown-menu-end">
-        <li *ngFor="let price of priceList">
-            <button class="dropdown-item" type="button" (click)="onSelect(price)">{{getTitle(price)}}</button>
-        </li>
-    </ul>
   </div>
+  <ul *ngIf="isShowList && priceList.length > 0" class="list-group select-price-list">
+    <li class="list-group-item select-price-list-item" *ngFor="let price of priceList" (click)="onSelect(price)">{{getTitle(price)}}</li>
+  </ul>
+  <ul *ngIf="isShowList && priceList.length == 0" class="list-group select-price-list">
+    <li class="list-group-item">Ничего не найдено</li>
+  </ul>

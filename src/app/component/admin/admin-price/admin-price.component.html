@@ -7,7 +7,7 @@
         <label for="price" class="form-label">Price</label>
         <input type="number" formControlName="price" class="form-control" id="text" placeholder="Enter price">
     </div>
-    <button type="submit" class="btn btn-primary">Установить цену</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Установить цену</button>
 </form>
 
 <div class="row mb-3" *ngFor="let price of priceList">
@@ -19,4 +19,4 @@
         <p>Дата: {{price.create |date:"yyyy-mm-dd H:mm:ss"}}</p>
         <p>Цена: {{price.price}}</p>
     </div>
-  </div>
+</div>
