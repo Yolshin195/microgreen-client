@@ -1,12 +1,14 @@
-<div class="row mb-3" *ngFor="let nomenclatureInStock of nomenclatureInStocList">
-    <div class="col col-lg-3">
-        <img [src]="nomenclatureInStock.nomenclature.image.fileName |pathImg" class="img-thumbnail" alt="...">
-    </div>
-    <div class="col">
-        <h1>{{nomenclatureInStock.nomenclature.title}}</h1>
-        <p>Посажен: {{nomenclatureInStock.create |date:'YYYY-MM-dd H:mm'}}</p>
-        <p>В наличии: {{nomenclatureInStock.available}}</p>
-        <p>Цена: {{nomenclatureInStock.price.price}}р.шт.</p>
-        <button class="btn btn-success">Купить</button>
+<div class="container mt-3">
+    <div class="row mb-3" *ngFor="let nomenclatureInStock of nomenclatureInStocList">
+        <div class="col col-lg-3">
+            <img [src]="nomenclatureInStock.nomenclature.image.fileName |pathImg" class="img-thumbnail" alt="...">
+        </div>
+        <div class="col">
+            <h1>{{nomenclatureInStock.nomenclature.title}}</h1>
+            <p>Посажен: {{nomenclatureInStock.create |date:'YYYY-MM-dd H:mm'}}</p>
+            <p>В наличии: {{nomenclatureInStock.available}}</p>
+            <p>Цена: {{nomenclatureInStock.price.price}}р.шт.</p>
+            <button class="btn btn-success">Купить</button>
+        </div>
     </div>
 </div>

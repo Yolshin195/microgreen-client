@@ -1,3 +1,4 @@
+<div class="container mt-3">
 <form class="row mb-3"  [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="col col-lg-3">
         <app-upload-image formControlName="image"></app-upload-image>
@@ -44,4 +45,5 @@
               <button type="submit" class="btn btn-regect mb-3" (click)="onCancel()">Отменить</button>
         </div>
     </form>
+</div>
 </div>
