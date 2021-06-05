@@ -43,6 +43,10 @@ export class CountComponent implements OnInit, ControlValueAccessor {
   onChange(event: any) {
     let count = Number(event.target.value);
     if (!Number.isNaN(count)) {
+      if (count > this.max) {
+        count = this.max;
+        event.target.value = count;
+      }
       this.count = count;
       this.propagateChange(this.count);
       this.propageteTouche(this.count);

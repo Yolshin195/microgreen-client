@@ -1,20 +1,20 @@
 <div class="container mt-3">
-<div class="row">
+<div class="row mb-3" *ngFor="let basket of basketList">
     <div class="col col-lg-2">
-            <img src="/api/img/peas.jpg" class="img-thumbnail" alt="...">
+            <img [src]="basket.nomenclatureInStock.nomenclature.image.fileName |pathImg" class="img-thumbnail" alt="...">
     </div>
     <div class="col">
-        <p>Горох зеленый (Мадрас)</p>
+        <p>{{basket.nomenclatureInStock.nomenclature.title}}</p>
     </div>
     <div class="col col-lg-2">
-        <p>150 руб.</p>
+        <p>{{basket.nomenclatureInStock.price.price}} руб.</p>
         <p>Цена за 1 шт</p>
     </div>
     <div class="col col-lg-1" style="width: 150px;">
-        <app-count></app-count>
+        <app-count [max]="basket.nomenclatureInStock.available"></app-count>
     </div>
     <div class="col col-lg-1">
-        <p>150 руб.</p>
+        <p>{{basket.nomenclatureInStock.price.price}} руб.</p>
     </div>
 </div>
 </div>

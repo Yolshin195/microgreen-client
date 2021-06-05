@@ -8,7 +8,7 @@
             <p>Посажен: {{nomenclatureInStock.create |date:'YYYY-MM-dd H:mm'}}</p>
             <p>В наличии: {{nomenclatureInStock.available}}</p>
             <p>Цена: {{nomenclatureInStock.price.price}}р.шт.</p>
-            <button class="btn btn-success">Купить</button>
+            <button class="btn btn-success" (click)="onAddBasket(nomenclatureInStock)">Купить</button>
         </div>
     </div>
 </div>
