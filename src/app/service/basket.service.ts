@@ -1,5 +1,5 @@
 import { Injectable} from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject  } from 'rxjs';
 import { NomenclatureInStock } from './nomenclature-in-stock.service';
 
 export interface Basket {
@@ -11,40 +11,31 @@ export interface Basket {
   providedIn: 'root'
 })
 export class BasketService {
-  private list: Basket[] = [];
+  private resurceSource = new BehaviorSubject<Basket[]>([]);
+  resurce = this.resurceSource.asObservable();
 
   constructor() {
     let basketList = localStorage.getItem("basketList");
     if (basketList) {
-      this.list = JSON.parse(basketList);
+      this.resurceSource.next(JSON.parse(basketList));
     } 
   }
 
   findAll(): Observable<Basket[]> {
-    return of(this.list);
-  }
-
-  size(): Observable<number> {
-    return of(this.list.length);
+    return this.resurce;
   }
 
   add(nomenclatureInStock: NomenclatureInStock) {
-    if (this.list.find(basket => basket.nomenclatureInStock.id === nomenclatureInStock.id)) return;
+    if (this.resurceSource.value.find(basket => basket.nomenclatureInStock.id === nomenclatureInStock.id)) return;
 
-    this.list.push({
-      nomenclatureInStock,
-      count: 1
-    })
-
-    localStorage.setItem("basketList", JSON.stringify(this.list));
+    this.resurceSource.next([
+      {nomenclatureInStock, count: 1},
+       ...this.resurceSource.getValue()
+    ]);
   }
 
   delete(basket: Basket): void {
-    let index = this.list.indexOf(basket);
-    if (index !== -1) {
-      this.list.splice(index, 1);
-      localStorage.setItem("basketList", JSON.stringify(this.list));
-    }
+    this.resurceSource.next(this.resurceSource.getValue().filter(item => item !== basket));
   }
 
 }

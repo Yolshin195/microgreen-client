@@ -26,14 +26,13 @@
           </ul>
         </li>
       </ul>
+      <div class="d-flex">
+        <button routerLink="/basket" class="btn btn-outline-success" type="submit">
+          Козина <app-badge-basket></app-badge-basket>
+        </button>
+      </div>
     </div>
   </div>
-  <ul class="navbar-nav me-auto mb-2">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/basket" routerLinkActive="active">Корзина</a>
-    </li>
-  </ul>
-  
 </nav>
 
 <router-outlet></router-outlet>
