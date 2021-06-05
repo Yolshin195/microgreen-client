@@ -17,7 +17,10 @@ export class SelectNomenclatureComponent implements OnInit, ControlValueAccessor
   propagateChange: Function = () => {};
   propageteTouche: Function = () => {};
   nomenclatureList: Nomenclature[] = [];
-  inputValue: string = 'Enter title on nomenclature for serch';
+  currentNomenclature?: Nomenclature;
+  devaultInputValue: string = 'Enter title on nomenclature for serch';
+  inputValue: string = this.devaultInputValue;
+  isShowList: boolean = false;
 
   constructor(private nomenclatureService: NomenclatureService) { }
 
@@ -28,8 +31,10 @@ export class SelectNomenclatureComponent implements OnInit, ControlValueAccessor
 
   onSelect(nomenclature: Nomenclature) {
     this.inputValue = nomenclature.title;
+    this.currentNomenclature = nomenclature;
     this.propagateChange(nomenclature);
     this.propageteTouche(nomenclature);
+    this.onShowList(false);
   }
 
   onSearch(event: any) {
@@ -41,8 +46,26 @@ export class SelectNomenclatureComponent implements OnInit, ControlValueAccessor
       })
   }
 
-  onClick() {
+  onBeginSearch() {
     this.inputValue = '';
+    this.onShowList(true);
+  }
+
+  onToggle() {
+    this.onShowList(!this.isShowList);
+  }
+
+  onShowList(flag: boolean): void {
+    this.isShowList = flag;
+  }
+
+  onFocusout() {
+    this.onShowList(false);
+    if (this.currentNomenclature) {
+      this.inputValue = this.currentNomenclature.title
+    } else {
+      this.inputValue = this.devaultInputValue;
+    }
   }
 
   writeValue(nomenclature: Nomenclature): void {
@@ -54,6 +77,10 @@ export class SelectNomenclatureComponent implements OnInit, ControlValueAccessor
 
   registerOnTouched(fn: any): void {
     this.propageteTouche = fn;
+  }
+
+  isNull(obj: any) {
+    return !!obj;
   }
 
 }

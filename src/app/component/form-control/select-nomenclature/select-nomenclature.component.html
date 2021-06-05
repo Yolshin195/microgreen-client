@@ -2,15 +2,20 @@
     <input type="text" class="form-control"
         aria-label="Enter title on nomenclature for serch" 
         [value]="inputValue"
-        (focus)="onClick()"
+        (focus)="onBeginSearch()"
+        
         (input)="onSearch($event)"
+        [class.select-nomenclature-input-show]="isShowList"
     />
-    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <button type="button" class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
+        [class.select-nomenclature-botton-show]="isShowList"
+        (click)="onToggle()" >
       <span class="visually-hidden">Toggle Dropdown</span>
     </button>
-    <ul class="dropdown-menu dropdown-menu-end">
-        <li *ngFor="let nomenclature of nomenclatureList">
-            <button class="dropdown-item" type="button" (click)="onSelect(nomenclature)">{{nomenclature.title}}</button>
-        </li>
-    </ul>
   </div>
+  <ul *ngIf="isShowList && nomenclatureList.length > 0" class="list-group select-nomenclature-list">
+    <li class="list-group-item select-nomenclature-list-item" *ngFor="let nomenclature of nomenclatureList" (click)="onSelect(nomenclature)">{{nomenclature.title}}</li>
+  </ul>
+  <ul *ngIf="isShowList && nomenclatureList.length == 0" class="list-group select-nomenclature-list">
+    <li class="list-group-item">Ничего не найдено</li>
+  </ul>

@@ -37,6 +37,7 @@ export class SelectPriceComponent implements OnInit, OnChanges, ControlValueAcce
 
   onSelect(price: Price) {
     this.inputValue = this.getTitle(price);
+    this.currentPrice = price;
     this.propagateChange(price);
     this.propageteTouche(price);
     this.onShowList(false);
@@ -94,11 +95,6 @@ export class SelectPriceComponent implements OnInit, OnChanges, ControlValueAcce
 
   onFocusout() {
     this.onShowList(false);
-    if (this.currentPrice) {
-      this.inputValue = this.getTitle(this.currentPrice);
-    } else {
-      this.inputValue = this.devaultInputValue;
-    }
   }
 
   writeValue(price: Price): void {

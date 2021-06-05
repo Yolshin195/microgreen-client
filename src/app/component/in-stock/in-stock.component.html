@@ -1,27 +1,12 @@
-<div class="row mb-3">
+<div class="row mb-3" *ngFor="let nomenclatureInStock of nomenclatureInStocList">
     <div class="col col-lg-3">
-        <img src="/api/img/peas.jpg" class="img-thumbnail" alt="...">
+        <img [src]="nomenclatureInStock.nomenclature.image.fileName |pathImg" class="img-thumbnail" alt="...">
     </div>
     <div class="col">
-        <h1>Горох зеленый (Мадрас)</h1>
-        <p>Посажен: 01-06-2021 19:18</p>
-        <p>В наличии: 8</p>
-        <p>Цена: 150р.шт.</p>
-        <button class="btn btn-primary">Подробнее...</button>
+        <h1>{{nomenclatureInStock.nomenclature.title}}</h1>
+        <p>Посажен: {{nomenclatureInStock.create |date:'YYYY-MM-dd H:mm'}}</p>
+        <p>В наличии: {{nomenclatureInStock.available}}</p>
+        <p>Цена: {{nomenclatureInStock.price.price}}р.шт.</p>
         <button class="btn btn-success">Купить</button>
-    </div>
-</div>
-
-<div class="row mb-3">
-    <div class="col col-lg-3">
-        <img src="/api/img/arugula.jpg" class="img-thumbnail" alt="...">
-    </div>
-    <div class="col">
-        <h1>Руккола (Индау)</h1>
-        <p>Посажен: </p>
-        <p>В наличии: 0</p>
-        <p>Цена: 150р.шт.</p>
-        <button class="btn btn-primary">Подробнее...</button>
-        <button class="btn btn-success">Заказать</button>
     </div>
 </div>
