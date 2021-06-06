@@ -8,6 +8,7 @@ import { OrderCultivationComponent } from './component/order-cultivation/order-c
 import { AdminNomenclatureComponent } from './component/admin/admin-nomenclature/admin-nomenclature.component';
 import { AdminNomenclatureInStockComponent } from './component/admin/admin-nomenclature-in-stock/admin-nomenclature-in-stock.component';
 import { AdminPriceComponent } from './component/admin/admin-price/admin-price.component';
+import { AdminNewsComponent } from './component/admin/admin-news/admin-news.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
@@ -17,7 +18,8 @@ const routes: Routes = [
   {path: 'order-cultivation', component: OrderCultivationComponent},
   {path: 'admin/nomenclature', component: AdminNomenclatureComponent},
   {path: 'admin/nomenclatureInStock', component: AdminNomenclatureInStockComponent},
-  {path: 'admin/price', component: AdminPriceComponent}
+  {path: 'admin/price', component: AdminPriceComponent},
+  {path: 'admin/news', component: AdminNewsComponent}
 ];
 
 @NgModule({
