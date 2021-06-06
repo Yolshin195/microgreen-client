@@ -20,6 +20,8 @@ import { SelectPriceComponent } from './component/form-control/select-price/sele
 import { AdminPriceComponent } from './component/admin/admin-price/admin-price.component';
 import { BadgeBasketComponent } from './component/basket/badge-basket/badge-basket.component';
 import { AdminNewsComponent } from './component/admin/admin-news/admin-news.component';
+import { OrderComponent } from './component/order/order.component';
+import { AdminOrderComponent } from './component/admin/admin-order/admin-order.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { AdminNewsComponent } from './component/admin/admin-news/admin-news.comp
     SelectPriceComponent,
     AdminPriceComponent,
     BadgeBasketComponent,
-    AdminNewsComponent
+    AdminNewsComponent,
+    OrderComponent,
+    AdminOrderComponent
   ],
   imports: [
     BrowserModule,

@@ -27,7 +27,7 @@
             <p>Общий вес: </p>
         </div>
         <div class="col">
-            <button class="btn btn-outline-dark">Оформить заказ</button>
+            <button class="btn btn-outline-dark" routerLink="/order" [disabled]="basketList.length === 0">Оформить заказ</button>
         </div>
     </div>
 </div>
