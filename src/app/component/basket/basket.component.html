@@ -1,23 +1,33 @@
 <div class="container mt-3">
-<div class="row mb-3" *ngFor="let basket of basketList">
-    <div class="col col-lg-2">
-            <img [src]="basket.nomenclatureInStock.nomenclature.image.fileName |pathImg" class="img-thumbnail" alt="...">
+    <div class="row mb-3" *ngFor="let basketControl of basketList">
+        <div class="col col-lg-2">
+                <img [src]="basketControl.nomenclatureInStock.nomenclature.image.fileName |pathImg" class="img-thumbnail" alt="...">
+        </div>
+        <div class="col">
+            <p>{{basketControl.nomenclatureInStock.nomenclature.title}}</p>
+        </div>
+        <div class="col col-lg-2">
+            <p>{{basketControl.nomenclatureInStock.price.price}} руб.</p>
+            <p>Цена за 1 шт.</p>
+        </div>
+        <div class="col col-lg-1" style="width: 150px;">
+            <app-count [max]="basketControl.nomenclatureInStock.available" [formControl]="basketControl.count"></app-count>
+        </div>
+        <div class="col col-lg-1">
+            <p>{{basketControl.nomenclatureInStock.price.price * basketControl.count.value}} руб.</p>
+        </div>
+        <div class="col col-lg-1">
+            <button class="btn btn-danger" (click)="onDelete(basketControl.basket)">X</button>
+        </div>
     </div>
-    <div class="col">
-        <p>{{basket.nomenclatureInStock.nomenclature.title}}</p>
+
+    <div class="row mb-3">
+        <div class="col">
+            <p>Итого: {{getTotalCost()}}</p>
+            <p>Общий вес: </p>
+        </div>
+        <div class="col">
+            <button class="btn btn-outline-dark">Оформить заказ</button>
+        </div>
     </div>
-    <div class="col col-lg-2">
-        <p>{{basket.nomenclatureInStock.price.price}} руб.</p>
-        <p>Цена за 1 шт.</p>
-    </div>
-    <div class="col col-lg-1" style="width: 150px;">
-        <app-count [max]="basket.nomenclatureInStock.available"></app-count>
-    </div>
-    <div class="col col-lg-1">
-        <p>{{basket.nomenclatureInStock.price.price}} руб.</p>
-    </div>
-    <div class="col col-lg-1">
-        <button class="btn btn-danger" (click)="onDelete(basket)">X</button>
-    </div>
-</div>
 </div>

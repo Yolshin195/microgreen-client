@@ -1,3 +1,4 @@
+import { createOfflineCompileUrlResolver } from '@angular/compiler';
 import { Injectable} from '@angular/core';
 import { Observable, of, BehaviorSubject  } from 'rxjs';
 import { NomenclatureInStock } from './nomenclature-in-stock.service';
@@ -38,8 +39,12 @@ export class BasketService {
     ]);
   }
 
+  save(currentValue:Basket, newValue: Basket) {
+
+  }
+
   delete(basket: Basket): void {
-    this.resurceSource.next(this.resurceSource.getValue().filter(item => item !== basket));
+    this.resurceSource.next(this.resurceSource.getValue().filter(basketItem => basketItem !== basket));
   }
 
 }

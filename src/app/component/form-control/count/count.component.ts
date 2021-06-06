@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
+import { Component, forwardRef, Input, OnInit} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -57,9 +57,7 @@ export class CountComponent implements OnInit, ControlValueAccessor {
 
   writeValue(count: number): void {
     count = Number(count);
-    if (!Number.isNaN(count)) {
-      this.count = count;
-    }
+    this.count = count | 1;
   }
 
   registerOnChange(fn: any): void {
