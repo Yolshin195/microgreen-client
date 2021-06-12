@@ -1,1 +1,64 @@
-<p>order works!</p>
+<div class="container mt-3">
+    <h1 class="mb-3">Оформление заказа</h1>
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Товары в заказе
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="row">
+                        <div class="col">Наименование</div>
+                        <div class="col col-lg-1">Скидка</div>
+                        <div class="col col-lg-1">Цена</div>
+                        <div class="col col-lg-2">Количество</div>
+                        <div class="col col-lg-1">Сумма</div>
+                    </div>
+                    <div class="row mt-3" *ngFor="let basket of basketList">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col col-lg-2">
+                                    <img class="img-thumbnail" [src]="basket.nomenclatureInStock.nomenclature.image.fileName |pathImg">
+                                </div>
+                                <div class="col">{{basket.nomenclatureInStock.nomenclature.title}}</div>
+                            </div>
+                        </div>
+                        <div class="col col-lg-1"></div>
+                        <div class="col col-lg-1">{{basket.nomenclatureInStock.price.price}} руб.</div>
+                        <div class="col col-lg-2">{{basket.count}} шт.</div>
+                        <div class="col col-lg-1">{{basket.count * basket.nomenclatureInStock.price.price}} руб.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Контактная информация
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <div class="row">
+                        <div class="col">
+                            <label for="inputEmail4" class="form-label">Как ваз зовут?</label>
+                            <input type="text" class="form-control" placeholder="Имя" aria-label="Имя">
+                        </div>
+                        <div class="col">
+                            <label for="inputEmail4" class="form-label">Как нам с вами связаться?</label>
+                            <input type="text" class="form-control" placeholder="Номер телефона" aria-label="Номер телефона">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end mt-3">
+        <div class="d-flex align-items-center">
+            <p>Нажимая на кнопку "Оформить заказ", я даю согласие на обработку персональных данных</p>
+        </div>
+        <button type="submit" class="btn btn-success">Оформить заказ</button>
+    </div>
+</div>
