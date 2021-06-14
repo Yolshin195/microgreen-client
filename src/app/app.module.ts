@@ -22,6 +22,8 @@ import { BadgeBasketComponent } from './component/basket/badge-basket/badge-bask
 import { AdminNewsComponent } from './component/admin/admin-news/admin-news.component';
 import { OrderComponent } from './component/order/order.component';
 import { AdminOrderComponent } from './component/admin/admin-order/admin-order.component';
+import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { AdminOrderComponent } from './component/admin/admin-order/admin-order.c
     BadgeBasketComponent,
     AdminNewsComponent,
     OrderComponent,
-    AdminOrderComponent
+    AdminOrderComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

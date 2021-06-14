@@ -1,0 +1,30 @@
+<div class="container mt-3">
+    <h1>Регистрация</h1>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="mb-3">
+            <label for="username" class="form-label">Имя пользователя</label>
+            <input type="username" required formControlName="username" class="form-control" id="username" aria-describedby="">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" required formControlName="email" class="form-control" id="email" aria-describedby="">
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">*Номер телефона</label>
+            <input type="text" formControlName="phone" class="form-control" id="phone" aria-describedby="">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">*Пароль</label>
+            <input type="password" formControlName="password" class="form-control" id="password">
+        </div>
+        <div class="mb-3">
+            <label for="repeatPassword" class="form-label">*Повторите пароль</label>
+            <input type="password" formControlName="repeatPassword" class="form-control" id="repeatPassword">
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" formControlName="agree" class="form-check-input" id="agree">
+            <label class="form-check-label" for="agree">*Даю согласие на обработку персональных данных</label>
+        </div>
+        <button class="btn btn-success" type="submit" [disabled]="!form.valid">Зарегистрировать</button>
+    </form>
+</div>

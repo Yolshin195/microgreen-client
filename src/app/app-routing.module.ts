@@ -11,6 +11,8 @@ import { AdminPriceComponent } from './component/admin/admin-price/admin-price.c
 import { AdminNewsComponent } from './component/admin/admin-news/admin-news.component';
 import { AdminOrderComponent } from './component/admin/admin-order/admin-order.component';
 import { OrderComponent } from './component/order/order.component';
+import { LoginComponent } from './component/login/login.component';
+import { RegisterComponent } from './component/register/register.component';
 
 const routes: Routes = [
   {path: '', component: MainComponent},
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path: 'basket', component: BasketComponent},
   {path: 'order-cultivation', component: OrderCultivationComponent},
   {path: 'order', component: OrderComponent},
+  {path: 'login', component: LoginComponent},
+  {path: 'register', component: RegisterComponent},
   {path: 'admin/nomenclature', component: AdminNomenclatureComponent},
   {path: 'admin/nomenclatureInStock', component: AdminNomenclatureInStockComponent},
   {path: 'admin/price', component: AdminPriceComponent},

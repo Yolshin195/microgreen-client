@@ -1,9 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export interface User {
   id: number,
   name: string,
   phone: string
+}
+
+export interface RegisterUser {
+  email: string,
+  phone: string,
+  username: string,
+  password: string,
+  repeatPassword: string,
+  agree: string
 }
 
 @Injectable({
@@ -12,7 +23,11 @@ export interface User {
 export class UserService {
   private path: string = '/api/user';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  registre(registerUser: RegisterUser): Observable<User> {
+    return this.http.post<User>(`${this.path}/register`, registerUser);
+  }
 
   findAll() {}
   
