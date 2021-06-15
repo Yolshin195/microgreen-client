@@ -1,0 +1,21 @@
+<div class="row mb-3">
+    <div class="col col-lg-2">
+            <img [src]="product?.nomenclatureInStock?.nomenclature?.image?.fileName || '' |pathImg" class="img-thumbnail" alt="...">
+    </div>
+    <div class="col">
+        <p>{{product?.nomenclatureInStock?.nomenclature?.title}}</p>
+    </div>
+    <div class="col col-lg-2">
+        <p>{{product?.nomenclatureInStock?.price?.price}} руб.</p>
+        <p>Цена за 1 шт.</p>
+    </div>
+    <div class="col col-lg-1" style="width: 150px;">
+        <app-count [max]="getMaxCount()" [formControl]="countControll"></app-count>
+    </div>
+    <div class="col col-lg-1">
+        <p>{{(product?.nomenclatureInStock?.price?.price || 0) * (product?.count || 0)}} руб.</p>
+    </div>
+    <div class="col col-lg-1">
+        <button class="btn btn-danger" (click)="onDelete.emit(product)">X</button>
+    </div>
+</div>

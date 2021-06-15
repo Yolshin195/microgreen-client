@@ -1,28 +1,29 @@
 <div class="container mt-3">
     <h1 class="mb-3">Корзина</h1>
-    <div class="row mb-3" *ngFor="let basketControl of basketList">
+
+    <div class="row mb-3" *ngFor="let product of service.productList">
         <div class="col col-lg-2">
-                <img [src]="basketControl.nomenclatureInStock.nomenclature.image.fileName |pathImg" class="img-thumbnail" alt="...">
+                <img [src]="product.nomenclatureInStock.nomenclature.image.fileName |pathImg" class="img-thumbnail" alt="...">
         </div>
         <div class="col">
-            <p>{{basketControl.nomenclatureInStock.nomenclature.title}}</p>
+            <p>{{product.nomenclatureInStock.nomenclature.title}}</p>
         </div>
         <div class="col col-lg-2">
-            <p>{{basketControl.nomenclatureInStock.price.price}} руб.</p>
+            <p>{{product.nomenclatureInStock.price.price}} руб.</p>
             <p>Цена за 1 шт.</p>
         </div>
         <div class="col col-lg-1" style="width: 150px;">
-            <app-count [max]="basketControl.nomenclatureInStock.available" [formControl]="basketControl.count"></app-count>
+            <app-count [count]="product.count" [max]="product.nomenclatureInStock.available" (change)="service.setCount(product, $event)" ></app-count>
         </div>
         <div class="col col-lg-1">
-            <p>{{basketControl.nomenclatureInStock.price.price * basketControl.count.value}} руб.</p>
+            <p>{{product.nomenclatureInStock.price.price * product.count}} руб.</p>
         </div>
         <div class="col col-lg-1">
-            <button class="btn btn-danger" (click)="onDelete(basketControl.basket)">X</button>
+            <button class="btn btn-danger" (click)="service.delete(product)">X</button>
         </div>
     </div>
 
-    <div class="row mb-3">
+    <div class="row mb-3" *ngIf="service.productList.length > 0">
         <div class="col">
             <p>Итого: {{getTotalCost()}} руб.</p>
             <p>Общий вес: </p>
@@ -30,5 +31,10 @@
         <div class="col">
             <button class="btn btn-outline-dark" routerLink="/order" [disabled]="basketList.length === 0">Оформить заказ</button>
         </div>
+    </div>
+    
+    <div *ngIf="service.productList.length === 0">
+        <p>Сначала добавьте товар в корзину</p>
+        <button class="btn btn-dark" routerLink="/in-stock">Посмотреть микрозелень в наличии</button>
     </div>
 </div>

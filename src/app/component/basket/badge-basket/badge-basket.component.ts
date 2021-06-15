@@ -9,7 +9,7 @@ import { BasketService } from 'src/app/service/basket.service';
 export class BadgeBasketComponent implements OnInit {
   size: number = 0;
 
-  constructor(private basketService: BasketService) { }
+  constructor(public basketService: BasketService) { }
 
   ngOnInit(): void {
     this.basketService.findAll().subscribe(basketList => this.size = basketList.length);

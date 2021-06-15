@@ -9,7 +9,7 @@ import { Basket, BasketService } from 'src/app/service/basket.service';
 export class OrderComponent implements OnInit {
   basketList: Basket[] = [];
 
-  constructor(private basketService: BasketService) { }
+  constructor(public basketService: BasketService) { }
 
   ngOnInit(): void {
     this.basketService.findAll().subscribe(basketList => this.basketList = basketList);

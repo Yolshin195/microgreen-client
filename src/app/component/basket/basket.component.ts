@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, createPlatform, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Basket, BasketService } from 'src/app/service/basket.service';
 import { NomenclatureInStock } from 'src/app/service/nomenclature-in-stock.service';
@@ -16,32 +16,36 @@ export interface BasketControl {
 })
 export class BasketComponent implements OnInit {
   basketList: BasketControl[] = [];
+  form:FormGroup = this.createForm([]);
 
-  constructor(private formBuilder: FormBuilder, private service: BasketService) { }
+  constructor(private formBuilder: FormBuilder, public service: BasketService) { }
 
   ngOnInit(): void {
     this.findAll();
+    this.form.valueChanges.subscribe(formValue => {
+      console.log(formValue);
+    });
   }
 
-  createForm(basket: Basket): BasketControl {
-    let basketControl: BasketControl = {
-      count: new FormControl(basket.count),
-      nomenclatureInStock: basket.nomenclatureInStock,
-      basket: basket
-    };
+  createProductArrayForm(productList: Basket[]): FormArray {
+    return new FormArray(productList.map(product => this.createProductForm(product)))
+  }
 
-    //basketControl.count.valueChanges.subscribe(count => {});
+  createProductForm(product:Basket): FormControl {
+    return new FormControl(product);
+  }
 
-    return basketControl;
+  createForm(productList: Basket[]): FormGroup  {
+    return this.formBuilder.group({
+      products: this.createProductArrayForm(productList)
+    })
   }
 
   findAll(): void {
-    this.service.findAll().subscribe(basketList => 
-      this.basketList = basketList.map(basket => this.createForm(basket))
-    );
   }
 
   onDelete(basket: Basket): void {
+    console.log("!!", basket);
     this.service.delete(basket);
   }
 
@@ -49,6 +53,10 @@ export class BasketComponent implements OnInit {
   getTotalCost(): number {
     return this.basketList.reduce((sum, basketControl) => 
       sum + (basketControl.count.value * basketControl.nomenclatureInStock.price.price), 0);
+  }
+
+  getProductControls(): FormArray {
+    return (<FormArray>this.form.controls.products)
   }
 
 }

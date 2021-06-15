@@ -12,39 +12,41 @@ export interface Basket {
   providedIn: 'root'
 })
 export class BasketService {
-  private resurceSource = new BehaviorSubject<Basket[]>([]);
-  resurce = this.resurceSource.asObservable();
+  public productList: Basket[] = [];
 
   constructor() {
     let basketList = localStorage.getItem("basketList");
     if (basketList) {
-      this.resurceSource.next(JSON.parse(basketList));
+      this.productList = JSON.parse(basketList);
     }
+  }
 
-    this.resurce.subscribe(basketList => 
-      localStorage.setItem("basketList", JSON.stringify(basketList))
-    );
+  setLocalStorage(productList: Basket[]): void {
+    localStorage.setItem("basketList", JSON.stringify(productList))
   }
 
   findAll(): Observable<Basket[]> {
-    return this.resurce;
+    return of(this.productList);
   }
 
   add(nomenclatureInStock: NomenclatureInStock) {
-    if (this.resurceSource.value.find(basket => basket.nomenclatureInStock.id === nomenclatureInStock.id)) return;
+    if (this.productList.find(basket => basket.nomenclatureInStock.id === nomenclatureInStock.id)) return;
 
-    this.resurceSource.next([
-      {nomenclatureInStock, count: 1},
-       ...this.resurceSource.getValue()
-    ]);
+    this.productList.push({nomenclatureInStock, count: 1});
+    this.setLocalStorage(this.productList);
   }
 
-  save(currentValue:Basket, newValue: Basket) {
-
+  setCount(product: Basket, count: number): void {
+    let index = this.productList.indexOf(product);
+    if (index !== -1) {
+      this.productList[index].count = count;
+      this.setLocalStorage(this.productList);
+    }
   }
 
   delete(basket: Basket): void {
-    this.resurceSource.next(this.resurceSource.getValue().filter(basketItem => basketItem !== basket));
+    this.productList = this.productList.filter(product => product !== basket);
+    this.setLocalStorage(this.productList);
   }
 
 }

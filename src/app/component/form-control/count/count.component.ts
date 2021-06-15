@@ -1,4 +1,4 @@
-import { Component, forwardRef, Input, OnInit} from '@angular/core';
+import { Component, forwardRef, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
@@ -14,10 +14,12 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class CountComponent implements OnInit, ControlValueAccessor {
   propagateChange: Function = () => {};
   propageteTouche: Function = () => {};
-  public count: number = 1;
+  //public count: number = 1;
 
   @Input() min: number = 1;
   @Input() max: number = 999;
+  @Input() count: number = 1; 
+  @Output() change: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() { }
 
@@ -29,7 +31,8 @@ export class CountComponent implements OnInit, ControlValueAccessor {
   
     this.count++;
     this.propagateChange(this.count);
-    this.propageteTouche(this.count);
+    //this.propageteTouche(this.count);
+    this.change.emit(this.count);
   }
 
   onMinus() {
@@ -37,7 +40,8 @@ export class CountComponent implements OnInit, ControlValueAccessor {
 
     this.count--;
     this.propagateChange(this.count);
-    this.propageteTouche(this.count);
+    //this.propageteTouche(this.count);
+    this.change.emit(this.count);
   }
 
   onChange(event: any) {
@@ -49,7 +53,8 @@ export class CountComponent implements OnInit, ControlValueAccessor {
       }
       this.count = count;
       this.propagateChange(this.count);
-      this.propageteTouche(this.count);
+      //this.propageteTouche(this.count);
+      this.change.emit(this.count);
     } else {
       event.target.value = this.count;
     }
