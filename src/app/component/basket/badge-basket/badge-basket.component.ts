@@ -7,12 +7,12 @@ import { BasketService } from 'src/app/service/basket.service';
   styleUrls: ['./badge-basket.component.css']
 })
 export class BadgeBasketComponent implements OnInit {
-  size: number = 0;
+  //size: number = 0;
 
   constructor(public basketService: BasketService) { }
 
   ngOnInit(): void {
-    this.basketService.findAll().subscribe(basketList => this.size = basketList.length);
+    //this.basketService.findAll().subscribe(basketList => this.size = basketList.length);
   }
 
 }

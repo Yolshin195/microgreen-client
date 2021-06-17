@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 export interface OrderStatus {
   id: number,
-  title: string
+  title: string,
+  value: string
 }
 
 @Injectable({

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Basket, BasketService } from 'src/app/service/basket.service';
+import { Order, OrderRegister, OrderService } from 'src/app/service/order.service';
 
 @Component({
   selector: 'app-order',
@@ -8,11 +10,29 @@ import { Basket, BasketService } from 'src/app/service/basket.service';
 })
 export class OrderComponent implements OnInit {
   basketList: Basket[] = [];
+  form: FormGroup = this.createForm();
 
-  constructor(public basketService: BasketService) { }
+  constructor(public basketService: BasketService, private orderService: OrderService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.basketService.findAll().subscribe(basketList => this.basketList = basketList);
+  }
+
+  createForm(): FormGroup {
+    return this.formBuilder.group({
+      username: ['', Validators.required],
+      phone: ['', Validators.required]
+    })
+  }
+
+  onSubmit() {
+    console.log("order submit!")
+    let order: OrderRegister = {
+      products: this.basketService.productList,
+      user: this.form.value
+    };
+
+    this.orderService.register(order).subscribe(() => console.log("submit!"));
   }
 
 }

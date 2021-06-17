@@ -2,10 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
+export interface Role {
+
+}
+
 export interface User {
   id: number,
-  name: string,
-  phone: string
+  username: string,
+  email: string,
+  phone: string,
+  date: Date,
+  roles: Role[],
 }
 
 export interface RegisterUser {

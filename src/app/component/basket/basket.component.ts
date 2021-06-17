@@ -3,19 +3,12 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Basket, BasketService } from 'src/app/service/basket.service';
 import { NomenclatureInStock } from 'src/app/service/nomenclature-in-stock.service';
 
-export interface BasketControl {
-  count: FormControl,
-  nomenclatureInStock: NomenclatureInStock,
-  basket: Basket
-}
-
 @Component({
   selector: 'app-basket',
   templateUrl: './basket.component.html',
   styleUrls: ['./basket.component.css']
 })
 export class BasketComponent implements OnInit {
-  basketList: BasketControl[] = [];
   form:FormGroup = this.createForm([]);
 
   constructor(private formBuilder: FormBuilder, public service: BasketService) { }
@@ -51,8 +44,8 @@ export class BasketComponent implements OnInit {
 
   //получить полную стоимость
   getTotalCost(): number {
-    return this.basketList.reduce((sum, basketControl) => 
-      sum + (basketControl.count.value * basketControl.nomenclatureInStock.price.price), 0);
+    return this.service.productList.reduce((sum, basketControl) => 
+      sum + (basketControl.count * basketControl.nomenclatureInStock.price.price), 0);
   }
 
   getProductControls(): FormArray {
