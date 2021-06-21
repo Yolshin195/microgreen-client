@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AppService } from './service/app.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'microgreen';
+  constructor(public appService: AppService, private router: Router) {}
+
+  logout() {
+    this.appService.logout(() => {
+      this.router.navigateByUrl("/");
+    })
+  }
 }

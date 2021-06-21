@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Role {
-
+  id: number,
+  authority: string
 }
 
 export interface User {

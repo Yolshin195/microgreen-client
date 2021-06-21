@@ -15,7 +15,7 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/content" routerLinkActive="active">Справочник</a>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" *ngIf="appService.isAdmin()">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Admin
           </a>
@@ -35,7 +35,7 @@
           </svg>
           <app-badge-basket style="position: absolute; top:-5px; right: -5px; z-index: 100;"></app-badge-basket>
         </button>
-        <div class="dropdown btn-group">
+        <div *ngIf="!appService.authenticated" class="dropdown btn-group">
           <button class="btn btn-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
@@ -45,6 +45,17 @@
           <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item"  routerLink="/login">Войти</a></li>
             <li><a class="dropdown-item"  routerLink="/register">Зарегистрироваться</a></li>
+          </ul>
+        </div>
+        <div *ngIf="appService.authenticated" class="dropdown btn-group">
+          <button class="btn btn-dark" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+              <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+            </svg>
+          </button>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" (click)="logout()">Выход</a></li>
           </ul>
         </div>
       </div>
