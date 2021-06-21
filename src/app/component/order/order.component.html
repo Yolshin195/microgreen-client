@@ -4,11 +4,11 @@
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button class="accordion-button" [class.collapsed]="!itemsShow[0]" type="button">
                         Товары в заказе
                     </button>
                 </h2>
-                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div id="collapseOne" class="accordion-collapse collapse" [class.show]="itemsShow[0]">
                     <div class="accordion-body">
                         <div class="row">
                             <div class="col">Наименование</div>
@@ -31,16 +31,19 @@
                             <div class="col col-lg-2">{{basket.count}} шт.</div>
                             <div class="col col-lg-1">{{basket.count * basket.nomenclatureInStock.price.price}} руб.</div>
                         </div>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" class="btn btn-outline-success" (click)="onShow(0)">Далее</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="accordion-item">
                 <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    <button class="accordion-button" [class.collapsed]="!itemsShow[1]" type="button">
                         Контактная информация
                     </button>
                 </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div id="collapseTwo" class="accordion-collapse collapse" [class.show]="itemsShow[1]">
                     <div class="accordion-body">
                         <div class="row">
                             <div class="col">
@@ -60,7 +63,7 @@
             <div class="d-flex align-items-center">
                 <p>Нажимая на кнопку "Оформить заказ", я даю согласие на обработку персональных данных</p>
             </div>
-            <button type="submit" class="btn btn-success" [disabled]="!form.valid">Оформить заказ</button>
+            <button type="submit" class="btn btn-outline-dark" [disabled]="!form.valid">Оформить заказ</button>
         </div>
     </form>
 </div>

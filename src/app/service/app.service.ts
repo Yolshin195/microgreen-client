@@ -5,7 +5,8 @@ import { User } from './user.service';
 
 export interface Credential {
   username: string,
-  password: string
+  password: string,
+  isSave?: boolean
 }
 
 @Injectable({
@@ -16,11 +17,14 @@ export class AppService {
   authenticated: boolean = false;
   user?: User;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.restore();
+  }
 
   authenticate(credential: Credential, callback: Function): void {
+    const authorization: string = 'Basic ' + btoa(credential.username + ':' + credential.password);
     const headers = new HttpHeaders(credential ? {
-      authorization: 'Basic ' + btoa(credential.username + ':' + credential.password),
+      authorization: authorization,
       "X-Requested-With": "XMLHttpRequest"
     } : {});
 
@@ -28,12 +32,16 @@ export class AppService {
       if (user) {
         this.authenticated = true;
         this.user = user;
-        callback(false, user);
+        if (credential.isSave) {
+          this.save(authorization);
+        }
       } else {
         this.authenticated = false;
         this.user = undefined;
-        callback(true);
+        this.remove();
       }
+
+      return callback && callback(!this.authenticated, this.user);
     })
   }
 
@@ -43,6 +51,7 @@ export class AppService {
     ).subscribe(() => {
         this.authenticated = false;
         this.user = undefined;
+        this.remove();
         return callback && callback();
     });
   }
@@ -54,5 +63,38 @@ export class AppService {
     }
 
     return false;
+  }
+
+  restore() {
+    let authorization = this.get();
+    if (authorization !== null) {
+      const headers = new HttpHeaders({
+        authorization: authorization,
+        "X-Requested-With": "XMLHttpRequest"
+      });
+  
+      this.http.get<User>(this.path + '/login', {headers: headers}).subscribe(user => {
+        if (user) {
+          this.authenticated = true;
+          this.user = user;
+        } else {
+          this.authenticated = false;
+          this.user = undefined;
+          this.remove();
+        }
+      })
+    }
+  }
+
+  save(authorization: string): void {
+    localStorage.setItem("authorization", authorization);
+  }
+
+  get(): string | null {
+    return localStorage.getItem("authorization");
+  }
+
+  remove(): void {
+    localStorage.removeItem("authorization");
   }
 }

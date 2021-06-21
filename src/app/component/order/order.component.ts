@@ -11,6 +11,7 @@ import { Order, OrderRegister, OrderService } from 'src/app/service/order.servic
 export class OrderComponent implements OnInit {
   basketList: Basket[] = [];
   form: FormGroup = this.createForm();
+  itemsShow:boolean[] = [true, false];
 
   constructor(public basketService: BasketService, private orderService: OrderService, private formBuilder: FormBuilder) { }
 
@@ -33,6 +34,13 @@ export class OrderComponent implements OnInit {
     };
 
     this.orderService.register(order).subscribe(() => console.log("submit!"));
+  }
+
+  onShow(index: number): void {
+    if (this.itemsShow[index]) {
+      this.itemsShow[index] = false;
+      this.itemsShow[index + 1] = true;
+    }
   }
 
 }

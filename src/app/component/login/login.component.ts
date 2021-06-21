@@ -21,12 +21,12 @@ export class LoginComponent implements OnInit {
     return this.formBuilder.group({
       phone: ['', Validators.required],
       password: ['', Validators.required],
-      isSave: ['']
+      isSave: [false]
     });
   }
 
   submit() {
-    this.appService.authenticate({username: this.form.value.phone, password: this.form.value.password}, (error:boolean, user: User) => {
+    this.appService.authenticate({username: this.form.value.phone, password: this.form.value.password, isSave: this.form.value.isSave}, (error:boolean, user: User) => {
       if (error) {
         console.log("Error!");
       } else {
