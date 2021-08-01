@@ -25,6 +25,7 @@ import { AdminOrderComponent } from './component/admin/admin-order/admin-order.c
 import { LoginComponent } from './component/login/login.component';
 import { RegisterComponent } from './component/register/register.component';
 import { ProductControlComponent } from './component/form-control/product-control/product-control.component';
+import { MainMarketingComponent } from './component/main/main-marketing/main-marketing.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ProductControlComponent } from './component/form-control/product-contro
     AdminOrderComponent,
     LoginComponent,
     RegisterComponent,
-    ProductControlComponent
+    ProductControlComponent,
+    MainMarketingComponent
   ],
   imports: [
     BrowserModule,
