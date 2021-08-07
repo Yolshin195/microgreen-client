@@ -1,68 +1,65 @@
 <div class="container mt-3">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <h1 class="mb-3">Оформление заказа</h1>
-        <div class="accordion" id="accordionExample">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button" [class.collapsed]="!itemsShow[0]" type="button">
-                        Товары в заказе
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" [class.show]="itemsShow[0]">
-                    <div class="accordion-body">
+
+        <div class="card mb-3">
+            <div class="card-header">
+                Товары в заказе
+              </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">Наименование</div>
+                    <div class="col col-lg-1">Скидка</div>
+                    <div class="col col-lg-1">Цена</div>
+                    <div class="col col-lg-2">Количество</div>
+                    <div class="col col-lg-1">Сумма</div>
+                </div>
+                <div class="row mt-3" *ngFor="let basket of basketService.productList">
+                    <div class="col">
                         <div class="row">
-                            <div class="col">Наименование</div>
-                            <div class="col col-lg-1">Скидка</div>
-                            <div class="col col-lg-1">Цена</div>
-                            <div class="col col-lg-2">Количество</div>
-                            <div class="col col-lg-1">Сумма</div>
-                        </div>
-                        <div class="row mt-3" *ngFor="let basket of basketService.productList">
-                            <div class="col">
-                                <div class="row">
-                                    <div class="col col-lg-2">
-                                        <img class="img-thumbnail" [src]="basket.nomenclatureInStock.nomenclature.image.fileName |pathImg">
-                                    </div>
-                                    <div class="col">{{basket.nomenclatureInStock.nomenclature.title}}</div>
-                                </div>
+                            <div class="col col-lg-2">
+                                <img class="img-thumbnail"
+                                    [src]="basket.nomenclatureInStock.nomenclature.image.fileName |pathImg">
                             </div>
-                            <div class="col col-lg-1"></div>
-                            <div class="col col-lg-1">{{basket.nomenclatureInStock.price.price}} руб.</div>
-                            <div class="col col-lg-2">{{basket.count}} шт.</div>
-                            <div class="col col-lg-1">{{basket.count * basket.nomenclatureInStock.price.price}} руб.</div>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <button type="button" class="btn btn-outline-success" (click)="onShow(0)">Далее</button>
+                            <div class="col">{{basket.nomenclatureInStock.nomenclature.title}}</div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingTwo">
-                    <button class="accordion-button" [class.collapsed]="!itemsShow[1]" type="button">
-                        Контактная информация
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse" [class.show]="itemsShow[1]">
-                    <div class="accordion-body">
-                        <div class="row">
-                            <div class="col">
-                                <label for="inputEmail4" class="form-label">Как ваз зовут?</label>
-                                <input type="text" class="form-control" formControlName="username" placeholder="Имя" aria-label="Имя">
-                            </div>
-                            <div class="col">
-                                <label for="inputEmail4" class="form-label">Как нам с вами связаться?</label>
-                                <input type="text" class="form-control" formControlName="phone" placeholder="Номер телефона" aria-label="Номер телефона">
-                            </div>
-                        </div>
+                    <div class="col col-lg-1"></div>
+                    <div class="col col-lg-1">{{basket.nomenclatureInStock.price.price}} руб.</div>
+                    <div class="col col-lg-2">{{basket.count}} шт.</div>
+                    <div class="col col-lg-1">{{basket.count * basket.nomenclatureInStock.price.price}} руб.
                     </div>
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-end mt-3">
-            <div class="d-flex align-items-center">
-                <p>Нажимая на кнопку "Оформить заказ", я даю согласие на обработку персональных данных</p>
+        <div class="card mb-3">
+            <div class="card-header">
+                Контактная информация
+              </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <label for="inputEmail4" class="form-label">Как ваз зовут?</label>
+                        <input type="text" class="form-control" formControlName="username" placeholder="Имя"
+                            aria-label="Имя">
+                    </div>
+                    <div class="col">
+                        <label for="inputEmail4" class="form-label">Как нам с вами связаться?</label>
+                        <input type="text" class="form-control" formControlName="phone"
+                            placeholder="Номер телефона" aria-label="Номер телефона">
+                    </div>
+                </div>
             </div>
+        </div>
+        
+        <div class="card mb-3">
+            <div class="card-body">
+                Итого к оплате: {{getSum()}} руб.
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mb-3">
+            <p style="margin: auto 0; margin-right: 1rem;">Нажимая на кнопку "Оформить заказ", я даю согласие на обработку персональных данных</p>
             <button type="submit" class="btn btn-outline-dark" [disabled]="!form.valid">Оформить заказ</button>
         </div>
     </form>

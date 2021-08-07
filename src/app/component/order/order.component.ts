@@ -43,4 +43,14 @@ export class OrderComponent implements OnInit {
     }
   }
 
+  getSum(): number {
+    if (this.basketService.productList.length > 0) {
+      return this.basketService.productList
+        .map(basket => basket.count * basket.nomenclatureInStock.price.price)
+        .reduce((previous, current) => previous+current,0);
+    }
+
+    return 0;
+  }
+
 }
