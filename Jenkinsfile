@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'johnpapa/angular-cli'
+        }
+    }
 
     stages {
         stage('install') {
