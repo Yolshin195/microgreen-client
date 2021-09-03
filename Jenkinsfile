@@ -3,11 +3,15 @@ pipeline {
 
     stages {
         stage('install') {
-            echo 'Install!'    
+            steps {
+                echo 'Install!'
+            }
         }
 
         stage('build') {
-            echo 'Build!'
+            steps {
+                echo 'Build!'
+            }
         }
     }
 }
