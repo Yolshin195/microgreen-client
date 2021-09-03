@@ -1,14 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'johnpapa/angular-cli'
-        }
-    }
+    agent any
 
     stages {
         stage('install') {
             steps {
-                sh 'node --version'
+                sh 'id'
             }
         }
 
