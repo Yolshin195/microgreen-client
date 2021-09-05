@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('install') {
             steps {
-                sh '/usr/bin/node install'
+                sh '/usr/bin/npm install'
             }
         }
 
