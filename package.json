@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "prod": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "deploy": "ng build --output-path docs --base-href https://yolshin195.github.io/ygreens.ru/"

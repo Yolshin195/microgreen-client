@@ -1,20 +1,16 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:14'
-        }
-    }
+    agent any
 
     stages {
         stage('install') {
             steps {
-                sh 'id'
+                sh '/usr/bin/node install'
             }
         }
 
         stage('build') {
             steps {
-                sh 'ng build --prod'
+                sh '/usr/bin/npm run prod'
             }
         }
 
