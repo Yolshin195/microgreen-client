@@ -17,7 +17,7 @@ pipeline {
         stage('deploy') {
             steps {
                 echo 'Deploy!'
-                sh 'sudo rm -rf /var/www/ygreens.local'
+                sh 'sudo /var/CICD/ygreens-deploy.sh'
             }
         }
     }
