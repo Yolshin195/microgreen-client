@@ -7,4 +7,4 @@ if  [ -d $DIRWEB ]; then
 fi
 
 mkdir $DIRWEB
-cp -r ./dist/microgreen $DIRWEB
+cp -r ./dist/microgreen/. $DIRWEB/.
